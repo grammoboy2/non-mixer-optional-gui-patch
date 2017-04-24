@@ -50,6 +50,7 @@ class Module : public Fl_Group, public Loggable {
     Chain *_chain;
     bool _is_default;
 
+    static nframes_t _buffer_size;
     static nframes_t _sample_rate;
     static Module *_copied_module_empty;
     static char *_copied_module_settings;
@@ -86,6 +87,14 @@ public:
     virtual void update ( void ) {}
 
     virtual void update_tooltip ( void );
+
+    struct Picked {
+        bool is_lv2;
+        union {
+            const char* uri;
+            unsigned long unique_id;
+        };
+    };
 
     class Port
     {
@@ -555,6 +564,7 @@ protected:
     bool add_aux_port ( bool input, const char *prefix, int n , JACK::Port::type_e type );
 
 public:
+    nframes_t buffer_size ( void ) const { return Module::_buffer_size; }
     nframes_t sample_rate ( void ) const { return Module::_sample_rate; }
 
 
@@ -568,6 +578,7 @@ public:
     bool add_aux_audio_input ( const char *prefix, int n );
     bool add_aux_cv_input ( const char *prefix, int n );
 
+    static void set_buffer_size ( nframes_t bsize ) { _buffer_size = bsize; }
     static void set_sample_rate ( nframes_t srate ) { _sample_rate = srate; }
 
     void command_open_parameter_editor();

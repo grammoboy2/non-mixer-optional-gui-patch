@@ -916,6 +916,7 @@ Chain::buffer_size ( nframes_t nframes )
 
     configure_ports();
 
+    Module::set_buffer_size ( nframes );
     for ( int i = 0; i < modules(); ++i )
     {
         Module *m = module(i);

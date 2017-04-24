@@ -49,6 +49,7 @@
 
 
 
+nframes_t Module::_buffer_size = 0;
 nframes_t Module::_sample_rate = 0;
 Module *Module::_copied_module_empty = 0;
 char *Module::_copied_module_settings = 0;
@@ -894,14 +895,14 @@ Module::insert_menu_cb ( const Fl_Menu_ *m )
         mod = new Mono_Pan_Module();
     else if ( !strcmp(picked, "Plugin" ))
     {
-        unsigned long id = Plugin_Chooser::plugin_chooser( this->ninputs() );
+        Picked picked = Plugin_Chooser::plugin_chooser( this->ninputs() );
         
-        if ( id == 0 )
+        if ( picked.unique_id == 0 )
             return;
         
         Plugin_Module *m = new Plugin_Module();
         
-        m->load( id );
+        m->load( picked );
         
         mod = m;
     }
