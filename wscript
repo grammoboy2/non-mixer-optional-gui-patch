@@ -31,13 +31,18 @@ def configure(conf):
     conf.load('compiler_c')
     conf.load('compiler_cxx')
     conf.load('gnu_dirs')
-    conf.load('ntk_fluid')
+    conf.load('ntk_fluid',tooldir='tools.waf')
     conf.load('gccdeps')
     conf.line_just = 52
 
     conf.env['LIB_PTHREAD'] = ['pthread']
     conf.env['LIB_DL'] = ['dl']
     conf.env['LIB_M'] = ['m']
+  
+    if Options.options.sse:
+        if os.system("grep -q '^flags.*\<sse2\>' /proc/cpuinfo"):
+            Options.options.sse = 0
+            print( "Processor lacks sse, disabling..." )
 
     # NTK_EXTRA_FLAGS=''
     # if not Options.options.use_system_ntk:

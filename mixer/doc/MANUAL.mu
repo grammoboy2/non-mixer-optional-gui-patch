@@ -215,7 +215,7 @@
   respectively, and `f` and `s` switch between /fader/ and /signal/
   views. The strip's context menu can be invoked without the mouse by
   hitting the `Menu` key (assuming your keyboard has one).
-
+  
 ::: Signal Chain
 
   The signal chain view of a mixer strip provides a way to view and
@@ -294,10 +294,33 @@
 
   For the second instance of the Gain module on the strip named 'Foo'.
 
+  There's a possibility to get exact OSC path for module controls.
+  For this you need to switch strip mode to 'Signl', right click a
+  module, for example 'Gain', and open 'Edit parameters' dialog. OSC
+  path will be shown in a statusbar of the main window when you
+  hover a parameter.
+
   Non-DAW accesses these same signals via a more advanced signal
   routing layer on top of OSC. Any module parameter is easily
   controlled via Control Sequences in Non-DAW without the need to
   specify an OSC URL.
+
+
+::::: MIDI Control
+
+  Automatic translation between MIDI and Non's OSC Signals can be
+  achieved by adding the headless program `non-midi-mapper` (included in the
+  Non-Mixer distribution) to an NSM session.
+
+  Non-MIDI-Mapper provides JACK MIDI input and output ports that can be
+  connected to a suitable controller device.
+
+  In Non-Mixer, the `Remote Control\/Start Learning` menu item enters learning
+  mode in which Non Mixer can be taught which controls to associated with which
+  MIDI messages by clicking a control in Non-Mixer and moving the desired control
+  on the MIDI device. `Remote Control\/End Learning` ends the learning session.
+
+  The mapping will be saved with the NSM session.
 
 ::::: Manipulation
 
