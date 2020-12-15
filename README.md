@@ -1,10 +1,10 @@
-# -*- mode: org -*-
+# NON
 
-* Non-things build instructions
+## Non-things build instructions
 
 This repository contains all of the non-* software.
 
-** Getting NTK
+### Getting NTK
 
 If you just cloned the non repository or just executed git pull, then
 you should also run
@@ -16,15 +16,15 @@ git submodule update --init
 to pull down the latest NTK code required by Non. Git does *not* do
 this automatically.
 
-** Building NTK
+### Building NTK
 
 If you don't have NTK installed system-wide (which isn't very likely
 yet) you *MUST* begin the build process by typing:
 
 ```
-    cd lib/ntk
-    ./waf configure
-    ./waf
+cd lib/ntk
+./waf configure
+./waf
 ```
 
 Once NTK has been built you must install it system-wide before
@@ -33,29 +33,29 @@ attempting to build the non-* programs.
 To install NTK type:
 
 ```
-    su -c './waf install'
+su -c './waf install'
 ```
 
-** Build all projects
+### Build all projects
 
 Typing:
 
 ```
-    ./waf configure
-    ./waf
-     su -c './waf install'
+./waf configure
+./waf
+ su -c './waf install'
 ```
     
 from the base of the checkout of the Non git repository will build and
 install all of the non-* programs together.
 
-** Build a single project
+### Build a single project
 
 Typing:
 
 ```
-    ./waf configure --project=[timline|sequencer|mixer|session-manager]
-    ./waf
-    su -c './waf install'
+./waf configure --project=[timline|sequencer|mixer|session-manager]
+./waf
+su -c './waf install'
 ```
 
