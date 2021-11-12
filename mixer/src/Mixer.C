@@ -1045,13 +1045,10 @@ Mixer::update_menu ( void )
 }
 
 void
-Mixer::update_window_title(const char *path)
+Mixer::update_window_title()
 {
-    char title[96];
-    strcpy(title,APP_NAME); 
-    strcat(title, " - ");
-    strcat(title, path);
-    window()->label(title);
+    std::string title = std::string(APP_NAME) + " - " + session_path;
+    window()->label(title.c_str());
 }
 
 void
@@ -1271,7 +1268,8 @@ Mixer::command_load ( const char *path, const char *display_name )
 
     update_menu();
 
-    update_window_title(path);
+    session_path = path;
+    update_window_title();
 
     auto_connect();
 
@@ -1293,7 +1291,8 @@ Mixer::command_new ( const char *path, const char *display_name )
 
     update_menu();
 
-    update_window_title(path);
+    session_path = "";
+    update_window_title();
 
 
     return true;
@@ -1333,4 +1332,5 @@ void
 Mixer::command_show_gui( void )
 {
     window()->show();
+    update_window_title();
 }

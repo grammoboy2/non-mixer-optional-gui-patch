@@ -54,6 +54,8 @@ private:
     int _rows;
     int _strip_height;
 
+    std::string session_path;
+
     Fl_Color system_colors[3];
 
     Mixer_Strip* track_by_name ( const char *name );
@@ -102,9 +104,9 @@ public:
     Group *group ( int n );
     void add_group ( Group *g );
     void remove_group ( Group *g );
-    
+
     void update_menu ( void );
-    void update_window_title(const char *path);
+    void update_window_title();
 
     static Spatialization_Console *spatialization_console;
 
