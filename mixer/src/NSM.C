@@ -88,7 +88,7 @@ NSM_Client::command_open ( const char *name, const char *display_name, const cha
 
     if ( Project::validate( name ) )
     {
-        if ( ! mixer->command_load( name, display_name ) )
+    	if ( ! mixer->command_load( name, instance_name ) )
         {
             *out_msg = strdup( "Failed to load for unknown reason" );
             r = ERR_GENERAL;
@@ -96,7 +96,7 @@ NSM_Client::command_open ( const char *name, const char *display_name, const cha
     }
     else
     {
-        if ( ! mixer->command_new( name, display_name ) )
+        if ( ! mixer->command_new( name, instance_name ) )
         {
             *out_msg = strdup( "Failed to load for unknown reason" );
             r = ERR_GENERAL;

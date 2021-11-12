@@ -1045,6 +1045,16 @@ Mixer::update_menu ( void )
 }
 
 void
+Mixer::update_window_title(const char *path)
+{
+    char title[96];
+    strcpy(title,APP_NAME); 
+    strcat(title, " - ");
+    strcat(title, path);
+    window()->label(title);
+}
+
+void
 Mixer::send_feedback_cb ( void *v )
 {
     Mixer *m = (Mixer*)v;
@@ -1261,6 +1271,8 @@ Mixer::command_load ( const char *path, const char *display_name )
 
     update_menu();
 
+    update_window_title(path);
+
     auto_connect();
 
     mixer->activate();
@@ -1280,6 +1292,9 @@ Mixer::command_new ( const char *path, const char *display_name )
     load_project_settings();
 
     update_menu();
+
+    update_window_title(path);
+
 
     return true;
 //        fl_alert( "Error creating project!" );
